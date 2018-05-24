@@ -56,9 +56,15 @@ export default class GitContributorsList extends React.Component {
             style={{
               tickLabels: { fontSize: 3 }
             }}
+            label="Top 10 Contributors"
             //tickLabelComponent={<VictoryLabel angle={45} />}
           />
-          <VictoryAxis dependentAxis tickFormat={this.state.contributions} />
+          <VictoryAxis
+            dependentAxis
+            tickFormat={this.state.contributions}
+            label="Number of Contributions"
+            padding={{ top: 20, bottom: 60 }}
+          />
           <VictoryBar data={this.state.graphData} x="name" y="contributions" />
         </VictoryChart>
       </div>
