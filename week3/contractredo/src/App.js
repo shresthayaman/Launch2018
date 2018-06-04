@@ -4,6 +4,7 @@ import InputContract from "./Components/InputContract";
 import DisplayContract from "./Components/DisplayContract";
 
 import firebase from "./firebase";
+import Button from "@material-ui/core/Button";
 
 class App extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class App extends Component {
         company: contract.company,
         details: contract.details
       });
-      console.log(pushedKey);
+
       this.setState({
         contractList: tempList
       });
@@ -65,10 +66,27 @@ class App extends Component {
     contractRef.remove();
   }
 
+  deleteAll() {
+    this.state.contractList.map(contract => {
+      this.removeContract(contract.id);
+    });
+  }
+
   render() {
     return (
       <div className="App">
+        <h1>Contract Organizer</h1>
+
         <InputContract addToList={contract => this.addContract(contract)} />
+        <div className="deleteAll">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => this.deleteAll()}
+          >
+            Delete All
+          </Button>
+        </div>
         <DisplayContract
           allContracts={this.state.contractList}
           deleteContract={contractId => this.removeContract(contractId)}

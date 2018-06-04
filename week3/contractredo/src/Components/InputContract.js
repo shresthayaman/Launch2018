@@ -1,8 +1,8 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 // import PropTypes from "prop-types";
-// import FloatingActionButton from "material-ui/FloatingActionButton";
-// import ContentAdd from "material-ui/svg-icons/content/add";
+import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add";
 
 export default class InputContract extends React.Component {
   constructor(props) {
@@ -18,19 +18,26 @@ export default class InputContract extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  handleClick() {
+    this.props.addToList(this.state);
+    document.getElementById("name").value = "";
+    document.getElementById("company").value = "";
+    document.getElementById("details").value = "";
+  }
   render() {
-    console.log(this.state);
     return (
       <div>
         <TextField
           label="Name"
+          id="name"
           name="name"
           margin="normal"
           onChange={this.changeState.bind(this)}
         />
         <br />
         <TextField
-          label="Compnay"
+          label="Company"
+          id="company"
           name="company"
           margin="normal"
           onChange={this.changeState.bind(this)}
@@ -38,18 +45,20 @@ export default class InputContract extends React.Component {
         <br />
         <TextField
           label="Details"
+          id="details"
           name="details"
           margin="normal"
           onChange={this.changeState.bind(this)}
         />
         <br />
-        <button onClick={() => this.props.addToList(this.state)}>Add</button>
-        {/* <FloatingActionButton
-          style={style}s
-          onCLick={this.props.contract.addToList(this.state)}
+        <Button
+          variant="fab"
+          color="primary"
+          aria-label="add"
+          onClick={event => this.handleClick()}
         >
-          <ContentAdd />
-        </FloatingActionButton> */}
+          <AddIcon />
+        </Button>
       </div>
     );
   }

@@ -12,6 +12,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 
+import Checkbox from "@material-ui/core/Checkbox";
+
 export default class DisplayContract extends React.Component {
   constructor(props) {
     super(props);
@@ -19,41 +21,43 @@ export default class DisplayContract extends React.Component {
 
   render() {
     return (
-      <List>
-        {this.props.allContracts.map(contract => {
-          return (
-            <ListItem key={contract.name} dense>
-              <Avatar alt="Remy Sharp" />
-              <ListItemText
-                primary={
-                  <div>
-                    <b>Name: </b>
-                    {contract.name}
-                    <br />
-                    <b>Company: </b>
-                    {contract.company}
-                    <br />
-                    <b> Details: </b>
-                    {contract.details}
-                  </div>
-                }
-              />
-              <ListItemSecondaryAction>
-                <Tooltip id="tooltip-icon" title="Delete">
-                  <IconButton
-                    aria-label="Delete"
-                    onClick={() => this.props.deleteContract(contract.id)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </Tooltip>
-              </ListItemSecondaryAction>
-
-              <Divider />
-            </ListItem>
-          );
-        })}
-      </List>
+      <div>
+        <List>
+          <Divider />
+          {this.props.allContracts.map(contract => {
+            return (
+              <div>
+                <ListItem key={contract.name} dense>
+                  <Avatar alt="Remy Sharp" />
+                  <ListItemText
+                    primary={
+                      <div>
+                        <b>Name: </b>
+                        {contract.name}
+                        <br />
+                        <b>Company: </b>
+                        {contract.company}
+                        <br />
+                        <b> Details: </b>
+                        {contract.details}
+                      </div>
+                    }
+                  />
+                  <ListItemSecondaryAction>
+                    <IconButton
+                      aria-label="Delete"
+                      onClick={() => this.props.deleteContract(contract.id)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <Divider />
+              </div>
+            );
+          })}
+        </List>
+      </div>
     );
   }
 }
