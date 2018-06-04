@@ -4,10 +4,6 @@ import TextField from "@material-ui/core/TextField";
 // import FloatingActionButton from "material-ui/FloatingActionButton";
 // import ContentAdd from "material-ui/svg-icons/content/add";
 
-const style = {
-  marginRight: 20
-};
-
 export default class InputContract extends React.Component {
   constructor(props) {
     super(props);
@@ -32,19 +28,22 @@ export default class InputContract extends React.Component {
           margin="normal"
           onChange={this.changeState.bind(this)}
         />
+        <br />
         <TextField
           label="Compnay"
           name="company"
           margin="normal"
-          onChange={this.changeState}
+          onChange={this.changeState.bind(this)}
         />
+        <br />
         <TextField
           label="Details"
           name="details"
           margin="normal"
-          onChange={this.changeState}
+          onChange={this.changeState.bind(this)}
         />
-        {/* <button onCLick={this.props.contract.addToList(this.state)}>Add</button> */}
+        <br />
+        <button onClick={() => this.props.addToList(this.state)}>Add</button>
         {/* <FloatingActionButton
           style={style}s
           onCLick={this.props.contract.addToList(this.state)}
